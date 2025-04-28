@@ -9,7 +9,7 @@ dnf_install_1password() {
 
 install_1password() {
 # https://developer.1password.com/docs/cli/get-started/
-    if command -v dnf &> /dev/null; then
+    if command -v dnf &>/dev/null; then
         dnf_install_1password
     else
         echo "dnf not found; please install 1Password CLI manually"
@@ -18,7 +18,7 @@ install_1password() {
 }
 
 # ensure 1password
-if command -v op &> /dev/null; then
+if command -v op &>/dev/null; then
     op --version
 else
     echo "1Password CLI not found; installing now"
