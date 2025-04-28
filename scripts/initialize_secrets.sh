@@ -25,7 +25,23 @@ else
     op --version
 fi
 
+# signin to 1password
 eval $( \
     OP_SECRET_KEY="A3-5NNZGM-77GAXA-4YBVE-WD7WB-NC8GJ-E46XR" \
-        op account add --address my.1password.com --email orthonormalremy@gmail.com --signin \
+        op account add \
+            --address my.1password.com \
+            --email orthonormalremy@gmail.com \
+            --signin \
 )
+
+# get id_rsa ssh key from 1password
+mkdir -p ~/.ssh
+if ! [ -f ~/.ssh/id_rsa ] && ! [ -f ~/.ssh/id_rsa.pub ]; then
+    echo "saving down id_rsa and id_rsa.pub to ~/.ssh"
+    op read op://Shared/id_rsa/private_key > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
+    op read op://Shared/id_rsa/public_key > ~/.ssh/id_rsa.pub && chmod 644 ~/.ssh/id_rsa.pub
+else
+    echo "one or both file(s) already exists: ~/.ssh/id_rsa ~/.ssh/id_rsa.pub"
+    echo "skipping key save down"
+    exit 1
+fi
