@@ -35,7 +35,7 @@ eval $( \
             --signin \
 )
 
-# get id_rsa ssh key from 1password
+# get id_rsa ssh key pair from 1password
 mkdir -p ~/.ssh
 if ! [ -f ~/.ssh/id_rsa ] && ! [ -f ~/.ssh/id_rsa.pub ]; then
     echo "saving down id_rsa and id_rsa.pub to ~/.ssh"
@@ -43,6 +43,6 @@ if ! [ -f ~/.ssh/id_rsa ] && ! [ -f ~/.ssh/id_rsa.pub ]; then
     op read op://Shared/id_rsa/public_key > ~/.ssh/id_rsa.pub && chmod 644 ~/.ssh/id_rsa.pub
 else
     echo "one or both file(s) already exists: ~/.ssh/id_rsa ~/.ssh/id_rsa.pub"
-    echo "skipping key save down"
+    echo "skipping ssh key pair save down"
     exit 1
 fi
