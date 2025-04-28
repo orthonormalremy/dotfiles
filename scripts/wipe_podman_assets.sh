@@ -30,3 +30,5 @@ fi
 
 podman system prune --external --force
 podman system prune --all --build --volumes --force
+
+echo "success"
