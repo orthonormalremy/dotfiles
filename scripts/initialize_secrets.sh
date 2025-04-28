@@ -35,7 +35,7 @@ eval $( \
             --signin \
 )
 
-# get id_rsa ssh key pair from 1password
+# save down ssh key pair from 1password
 mkdir -p ~/.ssh
 if ! [ -f ~/.ssh/id_rsa ] && ! [ -f ~/.ssh/id_rsa.pub ]; then
     echo "saving down id_rsa and id_rsa.pub to ~/.ssh"
