@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 dnf_install_1password() {
     sudo rpm --import https://downloads.1password.com/linux/keys/1password.asc
