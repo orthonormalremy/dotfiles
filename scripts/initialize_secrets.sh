@@ -17,24 +17,6 @@ install_1password() {
     fi
 }
 
-add_1password_account_then_signin() {
-    eval $( \
-        OP_SECRET_KEY="A3-5NNZGM-77GAXA-4YBVE-WD7WB-NC8GJ-E46XR" \
-            op account add \
-                --address my.1password.com \
-                --email orthonormalremy@gmail.com \
-                --signin \
-    )
-}
-
-signin_to_1password() {
-    if [ -z "$(op account ls)" ]; then
-        add_1password_account_then_signin
-    else
-        eval $(op signin)
-    fi
-}
-
 # ensure 1password
 if command -v op &>/dev/null; then
     op --version
@@ -44,11 +26,14 @@ else
     op --version
 fi
 
-# signin to 1password if needed
-if [[ -z "$(op account ls)" ]] || ! op account get &>/dev/null; then
-    echo "not signed in to 1Password; attempting now"
-    signin_to_1password
-fi
+# signin to 1password
+eval $( \
+    OP_SECRET_KEY="A3-5NNZGM-77GAXA-4YBVE-WD7WB-NC8GJ-E46XR" \
+        op account add \
+            --address my.1password.com \
+            --email orthonormalremy@gmail.com \
+            --signin \
+)
 
 # save down ssh key pair from 1password
 mkdir -p ~/.ssh
