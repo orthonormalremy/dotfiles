@@ -15,7 +15,7 @@ export def provision_fedora_cenv [
     )
     
     let dotfiles_repo_path = git -C ($CURRENT_FILE | path dirname) rev-parse --show-toplevel
-    let dotfiles_repo_name = basename $dotfiles_repo_path
+    let dotfiles_repo_name = $dotfiles_repo_path | path basename
 
     # this inits the `rdahlke` user (amoung other sysadmin/root-level setup things)
     podman cp $"($dotfiles_repo_path)/scripts/sysadmin_setup_new_fedora_host.sh" $"($name):/tmp/"
