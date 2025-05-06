@@ -19,15 +19,6 @@ DOTFILES_REPO_DIR="$(git -C $SCRIPT_DIR rev-parse --show-toplevel)"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 source "$HOME/.cargo/env"
 
-# install nushell and default plugins (https://www.nushell.sh/book/plugins.html#core-plugins)
+# install nushell
 cargo install nu --locked
-nu -c "$(cat <<'EOF'
-[
-    nu_plugin_inc
-    nu_plugin_polars
-    nu_plugin_gstat
-    nu_plugin_formats
-    nu_plugin_query
-] | each { cargo install $in --locked } | ignore
-EOF
-)"
+nu "$DOTFILES_REPO_DIR/nu_scripts/rdahlke_setup_new_fedora_host.nu"
