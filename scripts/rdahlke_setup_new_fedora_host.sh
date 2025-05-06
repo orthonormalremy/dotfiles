@@ -1,24 +1,41 @@
 #!/bin/bash
 set -e
 
+###################
+# Helper Functions
+###################
+
+function trust_toplevel_git_repo() {
+    # Trust toplevel git repo for a given subdirectory
+    # Arguments:
+    #   $1 - A subdirectory path within the git repo to be trusted
+    (
+        git config --global --get-all safe.directory
+        git config --global --replace-all safe.directory "*"
+        git -C $1 rev-parse --show-toplevel
+        git config --global --unset-all safe.directory
+    ) | sort -u | while read -r repo; do
+        git config --global --add safe.directory "$repo"
+    done
+}
+
+
+##############
+# Main Script
+##############
+
+SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
+
 # setup git user and trust dotfiles repo
 git config --global user.name "rdahlke"
 git config --global user.email "orthonormalremy@gmail.com"
-SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
-(
-    git config --global --get-all safe.directory
-    git config --global --replace-all safe.directory "*"
-    git -C $SCRIPT_DIR rev-parse --show-toplevel
-    git config --global --unset-all safe.directory
-) | sort -u | while read -r repo; do
-    git config --global --add safe.directory "$repo"
-done
+trust_toplevel_git_repo $SCRIPT_DIR
 DOTFILES_REPO_DIR="$(git -C $SCRIPT_DIR rev-parse --show-toplevel)"
 
 # install rustup
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 source "$HOME/.cargo/env"
 
-# install nushell
+# install nushell and continue new fedora host setup from nushell script
 cargo install nu --locked
 nu "$DOTFILES_REPO_DIR/nu_scripts/rdahlke_setup_new_fedora_host.nu"
