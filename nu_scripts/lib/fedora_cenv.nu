@@ -14,16 +14,19 @@ export def provision_fedora_cenv [
             $image_name sleep infinity
     )
     
-    let dotfiles_repo_path = git -C ($CURRENT_FILE | path dirname) rev-parse --show-toplevel
-    let dotfiles_repo_name = $dotfiles_repo_path | path basename
+    let dotfiles_repo_dir = git -C ($CURRENT_FILE | path dirname) rev-parse --show-toplevel
+    let dotfiles_repo_name = $dotfiles_repo_dir | path basename
 
     # this inits the `rdahlke` user (amoung other sysadmin/root-level setup things)
-    podman cp $"($dotfiles_repo_path)/scripts/sysadmin_setup_new_fedora_host.sh" $"($name):/tmp/"
+    podman cp $"($dotfiles_repo_dir)/scripts/sysadmin_setup_new_fedora_host.sh" $"($name):/tmp/"
     podman exec -it --user root $name /tmp/sysadmin_setup_new_fedora_host.sh
 
     let rdahlke_home_dir = podman exec --user rdahlke $name bash -c "echo ~"
-    podman cp $dotfiles_repo_path $"($name):($rdahlke_home_dir)/"
-    podman exec -it --user rdahlke $name $"($rdahlke_home_dir)/($dotfiles_repo_name)/scripts/rdahlke_setup_new_fedora_host.sh"
+    podman cp $dotfiles_repo_dir $"($name):($rdahlke_home_dir)/"
+    podman exec -it --user rdahlke $name bash -c ([
+        $"chown --recursive rdahlke:rdahlke ($rdahlke_home_dir)/($dotfiles_repo_name)"
+        $"($rdahlke_home_dir)/($dotfiles_repo_name)/scripts/rdahlke_setup_new_fedora_host.sh"
+    ] | str join " && ")
 }
 
 export def rebuild_fedora_cenv_image [] {
