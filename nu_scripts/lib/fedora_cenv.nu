@@ -24,7 +24,7 @@ export def provision_fedora_cenv [
     let rdahlke_home_dir = podman exec --user rdahlke $name bash -c "echo ~"
     podman cp $dotfiles_repo_dir $"($name):($rdahlke_home_dir)/"
     podman exec -it --user rdahlke $name bash -c ([
-        $"chown --recursive rdahlke:rdahlke ($rdahlke_home_dir)/($dotfiles_repo_name)"
+        $"sudo chown --recursive rdahlke:rdahlke ($rdahlke_home_dir)/($dotfiles_repo_name)"
         $"($rdahlke_home_dir)/($dotfiles_repo_name)/scripts/rdahlke_setup_new_fedora_host.sh"
     ] | str join " && ")
 }
