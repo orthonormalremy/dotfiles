@@ -1,36 +1,12 @@
 #!/bin/bash
 set -e
 
-###################
-# Helper Functions
-###################
-
-function _trust_parent_git_repo () {
-    # Trust git repo containing the given subdirectory
-    # Arguments:
-    #   $1 - A subdirectory path within the git repo to be trusted
-    (
-        git config --global --get-all safe.directory
-        git config --global --replace-all safe.directory "*"
-        git -C $1 rev-parse --show-toplevel
-        git config --global --unset-all safe.directory
-    ) | sort -u | while read -r repo; do
-        git config --global --add safe.directory "$repo"
-    done
-}
-
-
-echo "HIT_1a"
-##############
-# Main Script
-##############
-
 SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
 
 # setup git user and trust dotfiles repo
 git config --global user.name "rdahlke"
 git config --global user.email "orthonormalremy@gmail.com"
-_trust_parent_git_repo $SCRIPT_DIR
+git config --global --replace-all safe.directory "*"
 DOTFILES_REPO_DIR="$(git -C $SCRIPT_DIR rev-parse --show-toplevel)"
 
 # install rustup
