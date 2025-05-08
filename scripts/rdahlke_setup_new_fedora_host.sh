@@ -9,6 +9,9 @@ git config --global user.email "orthonormalremy@gmail.com"
 git config --global --replace-all safe.directory "*"
 DOTFILES_REPO_DIR="$(git -C $SCRIPT_DIR rev-parse --show-toplevel)"
 
+# setup symlinks
+ln -s "$DOTFILES_REPO_DIR/.config" ~/.config
+
 # install rustup
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 source "$HOME/.cargo/env"
