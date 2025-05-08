@@ -11,8 +11,8 @@ export def add_primary_account [] {
     (
         OP_SECRET_KEY="A3-5NNZGM-77GAXA-4YBVE-WD7WB-NC8GJ-E46XR"
             op account add
-                --address my.1password.com
-                --email orthonormalremy@gmail.com
+                --address "my.1password.com"
+                --email "orthonormalremy@gmail.com"
                 --signin
     )
 }
