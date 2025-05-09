@@ -1,4 +1,4 @@
-const CURRENT_FILE = path self
+const current_file = path self
 
 export def provision_fedora_cenv [
     name: string
@@ -14,7 +14,7 @@ export def provision_fedora_cenv [
             $image_name sleep infinity
     )
     
-    let repo_root = git -C ($CURRENT_FILE | path dirname) rev-parse --show-toplevel
+    let repo_root = git -C ($current_file | path dirname) rev-parse --show-toplevel
     let repo_name = $repo_root | path basename
 
     # this inits the `rdahlke` user (amoung other sysadmin/root-level setup things)
