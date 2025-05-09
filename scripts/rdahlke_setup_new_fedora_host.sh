@@ -7,15 +7,19 @@ SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
 git config --global user.name "rdahlke"
 git config --global user.email "orthonormalremy@gmail.com"
 git config --global --replace-all safe.directory "*"
-DOTFILES_REPO_DIR="$(git -C $SCRIPT_DIR rev-parse --show-toplevel)"
+REPO_ROOT="$(git -C $SCRIPT_DIR rev-parse --show-toplevel)"
 
 # setup symlinks
-ln -s "$DOTFILES_REPO_DIR/.config" ~/.config
+ln -s "$REPO_ROOT/.config" ~/.config
 
 # install rustup
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 source "$HOME/.cargo/env"
 
-# install nushell and continue new fedora host setup from nushell script
+# install nushell (when using cargo, default core nu plugins must be installed separately)
+# https://www.nushell.sh/book/installation.html#build-from-crates-io-using-cargo
 cargo install nu --locked
-nu "$DOTFILES_REPO_DIR/nu_scripts/rdahlke_setup_new_fedora_host.nu"
+nu "$REPO_ROOT/nu_scripts/cargo_install_core_nu_plugins.nu"
+
+# continue new fedora host setup from nushell script
+nu "$REPO_ROOT/nu_scripts/rdahlke_setup_new_fedora_host.nu"
