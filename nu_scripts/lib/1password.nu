@@ -1,5 +1,3 @@
-export const PRIMARY_ACCOUNT_USER_ID = "3WERKMN4HRCTLCLO6ZD7HMI2RE"
-
 export def dnf_install_1password [] {
     # https://developer.1password.com/docs/cli/get-started/
     sudo rpm --import https://downloads.1password.com/linux/keys/1password.asc
