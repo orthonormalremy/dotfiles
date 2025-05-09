@@ -2,8 +2,6 @@ const current_file = path self
 let repo_root = git -C ($current_file | path dirname) rev-parse --show-toplevel
 
 # install packages
-sudo dnf install -y podman
-
 use lib/1password.nu dnf_install_1password
 dnf_install_1password
 
