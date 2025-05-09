@@ -1,4 +1,4 @@
-let repo_root = git -C (path self | path dirname) rev-parse --show-toplevel
+let repo_root = path self | git -C ($in | path dirname) rev-parse --show-toplevel
 
 # install packages
 sudo dnf install -y podman
