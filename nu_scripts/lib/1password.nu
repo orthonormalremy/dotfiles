@@ -13,6 +13,5 @@ export def add_primary_account [] {
             op account add
                 --address "my.1password.com"
                 --email "orthonormalremy@gmail.com"
-                --signin
     )
 }
