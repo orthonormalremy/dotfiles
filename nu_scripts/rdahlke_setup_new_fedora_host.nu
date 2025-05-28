@@ -7,7 +7,7 @@ dnf_install_1password
 
 
 # ensure secrets
-if not (~/.ssh/id_rsa | path exists) {
+if not ("~/.ssh/id_rsa" | path exists) {
     print "user does not have secrets; attempting to fetch them"
     mkdir ~/.ssh
     
@@ -32,6 +32,6 @@ if not (~/.ssh/id_rsa | path exists) {
 }
 
 git -C $repo_root remote set-url origin (
-    if (~/.ssh/id_rsa | path exists) { "git@github.com:orthonormalremy/dotfiles.git" } else { "https://github.com/orthonormalremy/dotfiles.git" }
+    if ("~/.ssh/id_rsa" | path exists) { "git@github.com:orthonormalremy/dotfiles.git" } else { "https://github.com/orthonormalremy/dotfiles.git" }
 )
 git -C $repo_root remote -v

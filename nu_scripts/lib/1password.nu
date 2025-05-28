@@ -6,8 +6,12 @@ export def dnf_install_1password [] {
 }
 
 export def add_primary_account [] {
+    let encrypted_op_secret_key = "U2FsdGVkX18srrnKii9DKH/AdSuOikIVKNyzwjTv+yQh8MVxV6MiTi9Y/r3pH6lgB/tj+7exIxcMbCxM6VqTzg=="
+    let decrypt_password = input --suppress-output
+    # unable to get `$encrypted_op_secret_key | ^openssl ...` to work in nu so using bash -c
+    let op_secret_key = bash -c $'echo "($encrypted_op_secret_key)" | openssl enc -aes-256-cbc -d -a -pbkdf2 -pass pass:($decrypt_password)'
     (
-        OP_SECRET_KEY="A3-5NNZGM-77GAXA-4YBVE-WD7WB-NC8GJ-E46XR"
+        OP_SECRET_KEY=$op_secret_key
             op account add
                 --address "my.1password.com"
                 --email "orthonormalremy@gmail.com"
