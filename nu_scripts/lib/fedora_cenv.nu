@@ -25,7 +25,7 @@ export def provision_fedora_cenv [
     podman cp $repo_root $"($name):($rdahlke_home_dir)/"
     podman exec -it --user rdahlke $name bash -c ([
         $"sudo chown --recursive rdahlke:rdahlke ($rdahlke_home_dir)/($repo_name)"
-        $"($rdahlke_home_dir)/($repo_name)/scripts/rdahlke_setup_new_fedora_host.sh"
+        $"($rdahlke_home_dir)/($repo_name)/scripts/rdahlke_setup_new_fedora_host.sh --prefer-cargo-install"
     ] | str join " && ")
 }
 
