@@ -13,12 +13,12 @@ export def ensure_key_pair_id_rsa [] {
 
 }
 
-export def ensure_default_ec2_firewall [] {
+export def ensure_primary_firewall [] {
     let default_vpc_id = aws ec2 describe-vpcs --filters "Name=isDefault,Values=true" --query "Vpcs[0].VpcId" --output text
     (
         aws ec2 create-security-group
-            --group-name "default-ec2-firewall"
-            --description $'default-ec2-firewall created (date now | format date "%+")'
+            --group-name "primary-firewall"
+            --description $'primary-firewall created (date now | format date "%+")'
             --vpc-id $default_vpc_id
     )
 }
