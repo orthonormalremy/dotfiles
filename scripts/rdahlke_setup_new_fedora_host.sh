@@ -32,12 +32,13 @@ REPO_ROOT="$(git -C $SCRIPT_DIR rev-parse --show-toplevel)"
 # ln -s "$REPO_ROOT/.config" ~/.config
 # TBD: maybe only handle rust up, cargo, and nu config here (and do rest from nu)
 
+# install nushell (and rustup if needed)
 if [ "$prefer_cargo_install" = true ]; then
     # install rustup
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
     source "$HOME/.cargo/env"
 
-    # install nushell (when using cargo, default core nu plugins must be installed separately)
+    # when using cargo, default core nu plugins must be installed separately
     # https://www.nushell.sh/book/installation.html#build-from-crates-io-using-cargo
     cargo install nu --locked
     nu "$REPO_ROOT/nu_scripts/cargo_install_core_nu_plugins.nu"
@@ -46,4 +47,8 @@ else
 fi
 
 # continue new fedora host setup from nushell script
-nu "$REPO_ROOT/nu_scripts/rdahlke_setup_new_fedora_host.nu"
+if [ "$prefer_cargo_install" = true ]; then
+    nu "$REPO_ROOT/nu_scripts/rdahlke_setup_new_fedora_host.nu" --prefer-cargo-install
+else
+    nu "$REPO_ROOT/nu_scripts/rdahlke_setup_new_fedora_host.nu"
+fi
