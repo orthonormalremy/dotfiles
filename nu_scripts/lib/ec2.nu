@@ -1,4 +1,4 @@
-def ensure_key_pair_id_rsa [] {
+export def ensure_key_pair_id_rsa [] {
     (
         aws ec2 describe-key-pairs
             --filters "Name=key-name,Values=id_rsa"
