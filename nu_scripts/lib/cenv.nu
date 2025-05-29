@@ -30,7 +30,7 @@ export def provision_fedora_cenv [
 }
 
 export def rebuild_fedora_cenv_image [] {
-    let cenv_name = $"tmp_fedora_cenv_to_commit_(date now | format date "%Y%m%d%H%M%S")"
+    let cenv_name = $"tmp_rebuild_fedora_cenv_to_commit_(date now | format date "%Y%m%d%H%M%S")"
     provision_fedora_cenv $cenv_name --from-scratch
     podman commit $cenv_name fedora_cenv
     podman stop $cenv_name
