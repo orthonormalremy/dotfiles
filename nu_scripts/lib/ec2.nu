@@ -20,7 +20,12 @@ export def ensure_primary_firewall [] {
             --query "SecurityGroups[0].GroupId"
             --output text
     ) | if ($in | str trim | is-empty) {
-        let default_vpc_id = aws ec2 describe-vpcs --filters "Name=isDefault,Values=true" --query "Vpcs[0].VpcId" --output text
+        let default_vpc_id = (
+            aws ec2 describe-vpcs
+                --filters "Name=isDefault,Values=true"
+                --query "Vpcs[0].VpcId"
+                --output text
+        )
         (
             aws ec2 create-security-group
                 --group-name "primary-firewall"
@@ -28,4 +33,8 @@ export def ensure_primary_firewall [] {
                 --vpc-id $default_vpc_id
         )
     }
+}
+
+export def primary_firewall_inbound_allowlist_add [] {
+    
 }
