@@ -40,7 +40,7 @@
   # plain files is through 'home.file'.
   home.file = {
     # Create symlink to allow `home-manager switch` to work from default location
-    ".config/home-manager".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/.config/home-manager";
+    ".config/home-manager".source = config.lib.file.mkOutOfStoreSymlink (toString ./.);
 
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
