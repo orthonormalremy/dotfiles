@@ -16,7 +16,7 @@ ps -p 1 -o comm=
 
 **For systemd-based systems:**
 
-Perform a multi-user installation with the [Determinate Nix installer](https://zero-to-nix.com/start/install/)[^1]:
+Perform a multi-user installation with the [Determinate Nix installer](https://zero-to-nix.com/start/install/)<sup>1</sup>:
 
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
@@ -28,7 +28,7 @@ exit # exit and open a new shell to refresh your environment
 
 **For non-systemd systems:**
 
-Perform a single-user installation with the [official installer](https://nixos.org/download/#nix-install-linux) (Determinate Systems does not offer a single-user installer as of 2025-06-04):
+Perform a single-user installation with the [official installer](https://nixos.org/download/#nix-install-linux):
 
 ```bash
 sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install) --no-daemon
@@ -37,6 +37,8 @@ sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install) --no-daem
 ```bash
 exit # exit and open a new shell to refresh your environment
 ```
+
+<sup>1</sup>Advantages of the Determinate Systems installer over the official one: (1) [flakes](https://zero-to-nix.com/concepts/flakes) and [unified CLI](https://zero-to-nix.com/concepts/nix/#unified-cli) enabled by default and (2) [these other features](https://github.com/DeterminateSystems/nix-installer/blob/main/README.md#features). They do not offer a single-user installer as of 2025-06-04.
 
 **1.2 Verify Installation**
 
@@ -90,3 +92,4 @@ nix run home-manager/master -- init --switch ~/dotfiles/.config/home-manager
 
 </details>
 
+[^1]: This is the footnote content.
