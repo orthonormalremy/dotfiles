@@ -62,7 +62,7 @@ mkdir -p ~/.config/nix
 Clone this dotfiles repository which includes the home-manager config:
 
 ```bash
-# I use `~` as the parent_dir_for_repo
+# I use my home directory (`~`) as the parent dir for the dotfiles repo
 nix-shell -p git --run "git -C $parent_dir_for_repo clone https://github.com/orthonormalremy/dotfiles.git"
 ```
 
@@ -75,7 +75,7 @@ nix run home-manager/master -- init --switch $parent_dir_for_repo/dotfiles/.conf
 <details>
 <summary>Remy, for your copy-paste convenience:</summary>
 
-```
+```bash
 nix-shell -p git --run "git -C ~ clone https://github.com/orthonormalremy/dotfiles.git"
 nix run home-manager/master -- init --switch ~/dotfiles/.config/home-manager
 ```
