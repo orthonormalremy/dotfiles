@@ -18,9 +18,11 @@ If your system uses systemd, install with the [Determinate Nix installer](https:
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
 ```
 
-> **Note:** Advantages of the Determinate Systems installer over the official one: (1) [flakes](https://zero-to-nix.com/concepts/flakes) and [unified CLI](https://zero-to-nix.com/concepts/nix/#unified-cli) enabled by default and (2) these [other features](https://github.com/DeterminateSystems/nix-installer/blob/main/README.md#features)
+> **Note:** Advantages of the Determinate Systems installer over the official one: (1) [flakes](https://zero-to-nix.com/concepts/flakes) and [unified CLI](https://zero-to-nix.com/concepts/nix/#unified-cli) enabled by default and (2) [these other features](https://github.com/DeterminateSystems/nix-installer/blob/main/README.md#features)
 
-If your system does not use systemd, perform a [single-user installation](https://nixos.org/download/#nix-install-linux):
+If your system does not use systemd, perform a single-user installation with the [official installer](https://nixos.org/download/#nix-install-linux):
+
+> **Note:** Determinate Systems doesn't offer a single-user installation as of 2025-06-04
 
 ```bash
 sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install) --no-daemon
