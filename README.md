@@ -6,21 +6,19 @@
 
 #### 1. Install Nix
 
-Check your init system:
+Check your init system to determine which installer to use:
 
 ```bash
 ps -p 1 -o comm=
 ```
 
 If your system uses systemd, install with the [Determinate Nix installer](https://zero-to-nix.com/start/install/):
-* Advantages: [flakes](https://zero-to-nix.com/concepts/flakes) and [unified CLI](https://zero-to-nix.com/concepts/nix/#unified-cli) enabled by default; [other features](https://github.com/DeterminateSystems/nix-installer/blob/main/README.md#features)
-
 
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
 ```
 
-> `exit` and open a new shell to refresh your environment
+> **Note:** Advantages of the Determinate Systems installer over the official one: (1) [flakes](https://zero-to-nix.com/concepts/flakes) and [unified CLI](https://zero-to-nix.com/concepts/nix/#unified-cli) enabled by default and (2) these [other features](https://github.com/DeterminateSystems/nix-installer/blob/main/README.md#features)
 
 If your system does not use systemd, perform a [single-user installation](https://nixos.org/download/#nix-install-linux):
 
@@ -28,7 +26,7 @@ If your system does not use systemd, perform a [single-user installation](https:
 sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install) --no-daemon
 ```
 
-> `exit` and open a new shell to refresh your environment
+`exit` and open a new shell to refresh your environment
 
 Confirm nix is installed:
 
@@ -57,7 +55,7 @@ mkdir -p ~/.config/nix
 (set -C; echo "experimental-features = nix-command flakes" > ~/.config/nix/nix.conf)
 ```
 
-#### 2. Boostrap System Using [Home Manager](https://github.com/nix-community/home-manager)
+#### 2. Boostrap System Setup Using [Home Manager](https://github.com/nix-community/home-manager)
 
 Clone this dotfiles repository which includes the home-manager config:
 
