@@ -40,7 +40,7 @@ nix --version
 
 **1.1 Enable `flakes` and `nix-command`**
 
-Test if these features are already enabled (should be the case if you used the Determinate Systems installer):
+Check if these features are already enabled (should be the case if you used the Determinate Systems installer):
 
 ```bash
 # test if `nix-command` is enabled
