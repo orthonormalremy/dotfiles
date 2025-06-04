@@ -14,11 +14,9 @@ Check your init system to determine which installer to use:
 ps -p 1 -o comm=
 ```
 
-**If your system uses systemd**
+**For systemd-based systems:**
 
 Perform a multi-user installation with the [Determinate Nix installer](https://zero-to-nix.com/start/install/):
-
-> **Note:** Advantages of the Determinate Systems installer over the official one: (1) [flakes](https://zero-to-nix.com/concepts/flakes) and [unified CLI](https://zero-to-nix.com/concepts/nix/#unified-cli) enabled by default and (2) [these other features](https://github.com/DeterminateSystems/nix-installer/blob/main/README.md#features)
 
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
@@ -28,7 +26,7 @@ curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix 
 exit # exit and open a new shell to refresh your environment
 ```
 
-**If your system does not use systemd**
+**For non-systemd systems:**
 
 Perform a single-user installation with the [official installer](https://nixos.org/download/#nix-install-linux) (Determinate Systems does not offer a single-user installer as of 2025-06-04):
 
@@ -40,13 +38,13 @@ sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install) --no-daem
 exit # exit and open a new shell to refresh your environment
 ```
 
-**To confirm nix is installed**
+**1.2 Verify Installation**
 
 ```bash
 nix --version
 ```
 
-**1.1 Enable `flakes` and `nix-command`**
+**1.3 Enable `flakes` and `nix-command`**
 
 Check if these features are already enabled (should be the case if you used the Determinate Systems installer):
 
