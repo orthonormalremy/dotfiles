@@ -16,7 +16,7 @@ ps -p 1 -o comm=
 
 **For systemd-based systems:**
 
-Perform a multi-user installation with the [Determinate Nix installer](https://zero-to-nix.com/start/install/)<sup>1</sup>:
+Perform a multi-user installation with the [Determinate Nix installer](https://zero-to-nix.com/start/install/):
 
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
@@ -38,7 +38,11 @@ sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install) --no-daem
 exit # exit and open a new shell to refresh your environment
 ```
 
-<sup>1</sup>Advantages of the Determinate Systems installer over the official one: (1) [flakes](https://zero-to-nix.com/concepts/flakes) and [unified CLI](https://zero-to-nix.com/concepts/nix/#unified-cli) enabled by default and (2) [these other features](https://github.com/DeterminateSystems/nix-installer/blob/main/README.md#features). They do not offer a single-user installer as of 2025-06-04.
+**Note on Determinate Systems:**
+
+Their installer has advantages over the official one: (1) [flakes](https://zero-to-nix.com/concepts/flakes) and [unified CLI](https://zero-to-nix.com/concepts/nix/#unified-cli) enabled by default and (2) [these other features](https://github.com/DeterminateSystems/nix-installer/blob/main/README.md#features).
+
+They do not offer a single-user installer as of 2025-06-04.
 
 **1.2 Verify Installation**
 
