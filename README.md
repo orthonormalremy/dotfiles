@@ -62,14 +62,14 @@ mkdir -p ~/.config/nix
 Clone this dotfiles repository which includes the home-manager config:
 
 ```bash
-# I use my home directory (`~`) as the parent dir for the dotfiles repo
-nix-shell -p git --run "git -C $parent_dir_for_repo clone https://github.com/orthonormalremy/dotfiles.git"
+# I use my home directory (`~`) as the parent dir for the repo
+nix-shell -p git --run "git -C $parent_dir clone https://github.com/orthonormalremy/dotfiles.git"
 ```
 
 Install and activate home-manager using the flakes approach ([link](https://nix-community.github.io/home-manager/index.xhtml#sec-flakes-standalone)):
 
 ```bash
-nix run home-manager/master -- init --switch $parent_dir_for_repo/dotfiles/.config/home-manager
+nix run home-manager/master -- init --switch $parent_dir/dotfiles/.config/home-manager
 ```
 
 <details>
