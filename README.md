@@ -16,7 +16,7 @@ ps -p 1 -o comm=
 
 **For systemd-based systems:**
 
-Perform a multi-user installation with the [Determinate Nix installer](https://zero-to-nix.com/start/install/):
+Perform a multi-user installation with the [Determinate Nix installer](https://zero-to-nix.com/start/install/)[^1]:
 
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
