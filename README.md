@@ -18,23 +18,19 @@ If your system uses systemd, install with the [Determinate Nix installer](https:
 
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
-
-# exit and open a new shell to refresh your environment
-exit
-
-# confirm nix is installed
-nix --version
+exit # exit and open a new shell to refresh your environment
 ```
 
 If your system does not use systemd, perform a [single-user installation](https://nixos.org/download/#nix-install-linux):
 
 ```bash
 sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install) --no-daemon
+exit # exit and open a new shell to refresh your environment
+```
 
-# exit and open a new shell to refresh your environment
-exit
+confirm nix is installed:
 
-# confirm nix is installed
+```bash
 nix --version
 ```
 
@@ -65,13 +61,12 @@ Clone this dotfiles repository which includes the home-manager config:
 
 ```bash
 cd $parent_dir_for_dotfiles_repo # I use `cd ~`
-nix-shell -p git
-git clone https://github.com/orthonormalremy/dotfiles.git
-exit # exit nix-shell
+nix-shell -p git --run "git clone https://github.com/orthonormalremy/dotfiles.git"
 ```
 
 Install and activate home-manager using the flakes approach ([link](https://nix-community.github.io/home-manager/index.xhtml#sec-flakes-standalone)):
 
 ```bash
 nix run home-manager/master -- init --switch $parent_dir_for_dotfiles_repo/dotfiles/.config/home-manager
+# nix run home-manager/master -- init --switch ~/dotfiles/.config/home-manager
 ```
