@@ -72,10 +72,13 @@ Install and activate home-manager using the flakes approach ([link](https://nix-
 nix run home-manager/master -- init --switch $parent_dir_for_repo/dotfiles/.config/home-manager
 ```
 
-> Remy, for your copy-paste convenience:
-> 
-> ```
-> nix-shell -p git --run "git -C ~ clone https://github.com/orthonormalremy/dotfiles.git"
-> nix run home-manager/master -- init --switch ~/dotfiles/.config/home-manager
-> ```
+<details>
+<summary>Remy, for your copy-paste convenience:</summary>
+
+```
+nix-shell -p git --run "git -C ~ clone https://github.com/orthonormalremy/dotfiles.git"
+nix run home-manager/master -- init --switch ~/dotfiles/.config/home-manager
+```
+
+</details>
 
