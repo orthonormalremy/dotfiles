@@ -58,3 +58,20 @@ Enable these features if not already enabled:
 mkdir -p ~/.config/nix
 (set -C; echo "experimental-features = nix-command flakes" > ~/.config/nix/nix.conf)
 ```
+
+#### 2. Boostrap System Using [Home Manager](https://github.com/nix-community/home-manager)
+
+Clone this dotfiles repository which includes the home-manager config:
+
+```bash
+cd $parent_dir_for_dotfiles_repo # I use `cd ~`
+nix-shell -p git
+git clone https://github.com/orthonormalremy/dotfiles.git
+exit # exit nix-shell
+```
+
+Install and activate home-manager using the flakes approach ([link](https://nix-community.github.io/home-manager/index.xhtml#sec-flakes-standalone)):
+
+```bash
+nix run home-manager/master -- init --switch $parent_dir_for_dotfiles_repo/dotfiles/.config/home-manager
+```
