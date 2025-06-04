@@ -6,31 +6,41 @@
 
 #### 1. Install Nix
 
+**1.1 Determine Which Installer to Use and Run It**
+
 Check your init system to determine which installer to use:
 
 ```bash
 ps -p 1 -o comm=
 ```
 
-If your system uses systemd, install with the [Determinate Nix installer](https://zero-to-nix.com/start/install/):
+**If your system uses systemd**
+
+Perform a multi-user installation with the [Determinate Nix installer](https://zero-to-nix.com/start/install/):
+
+> **Note:** Advantages of the Determinate Systems installer over the official one: (1) [flakes](https://zero-to-nix.com/concepts/flakes) and [unified CLI](https://zero-to-nix.com/concepts/nix/#unified-cli) enabled by default and (2) [these other features](https://github.com/DeterminateSystems/nix-installer/blob/main/README.md#features)
 
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
 ```
 
-> **Note:** Advantages of the Determinate Systems installer over the official one: (1) [flakes](https://zero-to-nix.com/concepts/flakes) and [unified CLI](https://zero-to-nix.com/concepts/nix/#unified-cli) enabled by default and (2) [these other features](https://github.com/DeterminateSystems/nix-installer/blob/main/README.md#features)
+```bash
+exit # exit and open a new shell to refresh your environment
+```
 
-If your system does not use systemd, perform a single-user installation with the [official installer](https://nixos.org/download/#nix-install-linux):
+**If your system does not use systemd**
 
-> **Note:** Determinate Systems doesn't offer a single-user installation as of 2025-06-04
+Perform a single-user installation with the [official installer](https://nixos.org/download/#nix-install-linux) (Determinate Systems does not offer a single-user installer as of 2025-06-04):
 
 ```bash
 sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install) --no-daemon
 ```
 
-`exit` and open a new shell to refresh your environment
+```bash
+exit # exit and open a new shell to refresh your environment
+```
 
-Confirm nix is installed:
+**To confirm nix is installed**
 
 ```bash
 nix --version
