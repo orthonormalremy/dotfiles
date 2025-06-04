@@ -26,7 +26,7 @@ exit
 nix --version
 ```
 
-If your system is non-systemd, perform a [single-user installation](https://nixos.org/download/#nix-install-linux):
+If your system does not use systemd, perform a [single-user installation](https://nixos.org/download/#nix-install-linux):
 
 ```bash
 sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install) --no-daemon
