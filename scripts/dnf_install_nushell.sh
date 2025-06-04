@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 
+# https://www.nushell.sh/book/installation.html#package-managers
 echo "[gemfury-nushell]
 name=Gemfury Nushell Repo
 baseurl=https://yum.fury.io/nushell/
