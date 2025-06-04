@@ -18,17 +18,17 @@ If your system uses systemd, install with the [Determinate Nix installer](https:
 
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
-
-# `exit` and open a new shell to refresh your environment
 ```
+
+> `exit` and open a new shell to refresh your environment
 
 If your system does not use systemd, perform a [single-user installation](https://nixos.org/download/#nix-install-linux):
 
 ```bash
 sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install) --no-daemon
-
-# `exit` and open a new shell to refresh your environment
 ```
+
+> `exit` and open a new shell to refresh your environment
 
 Confirm nix is installed:
 
