@@ -11,7 +11,7 @@
     };
 
     outputs = { nixpkgs, home-manager, ... }: {
-        homeConfigurations.${builtins.getEnv "USER"} = home-manager.lib.homeManagerConfiguration {
+        homeConfigurations.default = home-manager.lib.homeManagerConfiguration {
             pkgs = nixpkgs.legacyPackages.${builtins.currentSystem};
             modules = [ ./home.nix ];
         };
