@@ -79,7 +79,8 @@ nix-shell -p git --run "git -C $parent_dir clone https://github.com/orthonormalr
 Install and activate [Home Manager](https://github.com/nix-community/home-manager) using the [flakes approach](https://nix-community.github.io/home-manager/index.xhtml#sec-flakes-standalone):
 
 ```bash
-nix run home-manager/master -- init --switch $parent_dir/dotfiles/.config/home-manager
+# requires `--impure` because the flake.nix uses envionment variables such as $USER
+nix run home-manager/master -- switch --impure --flake $parent_dir/dotfiles/.config/home-manager
 ```
 
 <details>
@@ -87,7 +88,7 @@ nix run home-manager/master -- init --switch $parent_dir/dotfiles/.config/home-m
 
 ```bash
 nix-shell -p git --run "git -C ~ clone https://github.com/orthonormalremy/dotfiles.git"
-nix run home-manager/master -- init --switch ~/dotfiles/.config/home-manager
+nix run home-manager/master -- switch --impure --flake ~/dotfiles/.config/home-manager
 ```
 
 </details>
