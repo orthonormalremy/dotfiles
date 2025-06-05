@@ -40,9 +40,8 @@ exit # exit and open a new shell to refresh your environment
 
 **Note on Determinate Systems:**
 
-Their installer has advantages over the official one: (1) [flakes](https://zero-to-nix.com/concepts/flakes) and [unified CLI](https://zero-to-nix.com/concepts/nix/#unified-cli) enabled by default and (2) [these other features](https://github.com/DeterminateSystems/nix-installer/blob/main/README.md#features).
-
-They do not offer a single-user installer as of 2025-06-04.
+* Their installer has advantages over the official one: (1) [flakes](https://zero-to-nix.com/concepts/flakes) and [unified CLI](https://zero-to-nix.com/concepts/nix/#unified-cli) enabled by default and (2) [these other features](https://github.com/DeterminateSystems/nix-installer/blob/main/README.md#features)
+* They do not offer a single-user installer as of 2025-06-04
 
 **1.2 Verify Installation**
 
