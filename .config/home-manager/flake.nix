@@ -1,6 +1,8 @@
 {
+  description = "Home Manager configuration";
+  
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -9,13 +11,24 @@
 
   outputs = { nixpkgs, home-manager, ... }:
     let
-      system = builtins.currentSystem;
+      system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+      
+      # Get username from environment - works with --impure flag
       username = builtins.getEnv "USER";
-    in {
+    in
+    {
       homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [ ./home.nix ];
+        
+        modules = [
+          ./home.nix
+          {
+            # Set username and home directory dynamically
+            home.username = username;
+            home.homeDirectory = "/home/${username}";
+          }
+        ];
       };
     };
 }
