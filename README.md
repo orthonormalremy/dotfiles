@@ -26,7 +26,7 @@ curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix 
 exit # exit and open a new shell to refresh your environment
 ```
 
-> **Why the Determinate Systems Installer?** Enables [flakes](https://zero-to-nix.com/concepts/flakes) and [unified CLI](https://zero-to-nix.com/concepts/nix/#unified-cli) by default, plus [additional features](https://github.com/DeterminateSystems/nix-installer/blob/main/README.md#features).
+> **Why Determinate Nix Installer?** Enables [flakes](https://zero-to-nix.com/concepts/flakes) and [unified CLI](https://zero-to-nix.com/concepts/nix/#unified-cli) by default, plus [additional features](https://github.com/DeterminateSystems/nix-installer/blob/main/README.md#features).
 
 **For non-systemd systems:**
 
@@ -40,7 +40,7 @@ sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install) --no-daem
 exit # exit and open a new shell to refresh your environment
 ```
 
-> **Why the Official Installer?** Determinate Systems doesn't offer a single-user installer as of 2025-06-04.
+> **Why Official Installer?** Determinate Systems doesn't offer a single-user installer as of 2025-06-04.
 
 **1.2 Verify Installation**
 
