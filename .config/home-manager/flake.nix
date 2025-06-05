@@ -1,7 +1,8 @@
 {
   description = "Home Manager configuration";
-  
+
   inputs = {
+    # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -14,21 +15,19 @@
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
       
-      # Get username from environment - works with --impure flag
+      # builtins.getEnv requires --impure flag
       username = builtins.getEnv "USER";
     in
     {
-      homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations."${username}" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        
-        modules = [
-          ./home.nix
-          {
-            # Set username and home directory dynamically
-            home.username = username;
-            home.homeDirectory = "/home/${username}";
-          }
-        ];
+
+        # Specify your home configuration modules here, for example,
+        # the path to your home.nix.
+        modules = [ ./home.nix ];
+
+        # Optionally use extraSpecialArgs
+        # to pass through arguments to home.nix
       };
     };
 }
