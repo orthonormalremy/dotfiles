@@ -28,7 +28,11 @@ exit # exit and open a new shell to refresh your environment
 
 <details>
 <summary>Why the Determinate Nix installer?</summary>
-Advantages of the Determinate Systems installer over the official one: (1) [flakes](https://zero-to-nix.com/concepts/flakes) and [unified CLI](https://zero-to-nix.com/concepts/nix/#unified-cli) enabled by default and (2) [these other features](https://github.com/DeterminateSystems/nix-installer/blob/main/README.md#features)
+
+> Advantages of the Determinate Systems installer over the official one:
+> 1. [flakes](https://zero-to-nix.com/concepts/flakes) and [unified CLI](https://zero-to-nix.com/concepts/nix/#unified-cli) enabled by default
+> 2. [these other features](https://github.com/DeterminateSystems/nix-installer/blob/main/README.md#features)
+
 </details>
 
 **For non-systemd systems:**
@@ -45,7 +49,9 @@ exit # exit and open a new shell to refresh your environment
 
 <details>
 <summary>Why not the Determinate Nix installer?</summary>
-Determinate Systems does not offer a single-user installer as of 2025-06-04.
+
+> Determinate Systems does not offer a single-user installer as of 2025-06-04.
+
 </details>
 
 **1.2 Verify Installation**
