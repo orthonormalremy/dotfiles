@@ -20,7 +20,7 @@
 
   home.file = {
     # Create symlink to allow `home-manager switch` to work from default location
-    ".config/home-manager".source = config.lib.file.mkOutOfStoreSymlink (toString ./.);
+    ".config/home-manager".source = config.lib.file.mkOutOfStoreSymlink (builtins.toString ./.);
 
   };
 
