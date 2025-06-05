@@ -1,3 +1,5 @@
+# This flake requires --impure flag because it uses builtins.getEnv
+
 {
   description = "Home Manager configuration";
 
