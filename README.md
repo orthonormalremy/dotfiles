@@ -83,7 +83,7 @@ Install and activate [Home Manager](https://github.com/nix-community/home-manage
 nix run home-manager/master -- switch --impure --flake $parent_dir/dotfiles/.config/home-manager
 ```
 
-Going forward you don't have to specify the --flake path because the flake symlinks `dotfiles/.config/home-manager` to its default location:
+Going forward you don't have to specify the --flake path because the previous command symlinks `dotfiles/.config/home-manager` to its default location:
 
 ```bash
 home-manager switch --impure
