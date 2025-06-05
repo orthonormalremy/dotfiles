@@ -6,9 +6,9 @@
 
 #### 1. Install Nix
 
-**1.1 Determine Which Installer to Use and Run It**
+**1.1 Choose and Run the Appropriate Installer**
 
-Check your init system to determine which installer to use:
+First, check your init system:
 
 ```bash
 ps -p 1 -o comm=
@@ -26,12 +26,7 @@ curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix 
 exit # exit and open a new shell to refresh your environment
 ```
 
-<details>
-<summary>Why the Determinate Nix installer?</summary>
-
-> Advantages: (1) [flakes](https://zero-to-nix.com/concepts/flakes) and [unified CLI](https://zero-to-nix.com/concepts/nix/#unified-cli) enabled by default and (2) [these other features](https://github.com/DeterminateSystems/nix-installer/blob/main/README.md#features)
-
-</details>
+> **Why Determinate Systems?** Enables [flakes](https://zero-to-nix.com/concepts/flakes) and [unified CLI](https://zero-to-nix.com/concepts/nix/#unified-cli) by default, plus [additional features](https://github.com/DeterminateSystems/nix-installer/blob/main/README.md#features).
 
 **For non-systemd systems:**
 
@@ -45,12 +40,7 @@ sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install) --no-daem
 exit # exit and open a new shell to refresh your environment
 ```
 
-<details>
-<summary>Why not the Determinate Nix installer?</summary>
-
-> Determinate Systems does not offer a single-user installer as of 2025-06-04.
-
-</details>
+> **Note:** Determinate Systems doesn't offer a single-user installer as of 2025-06-04.
 
 **1.2 Verify Installation**
 
@@ -58,37 +48,35 @@ exit # exit and open a new shell to refresh your environment
 nix --version
 ```
 
-**1.3 Enable `flakes` and `nix-command`**
+**1.3 Enable Experimental Features**
 
-Check if these features are already enabled (should be the case if you used the Determinate Systems installer):
+Test if features are already enabled (should be automatic with Determinate Nix installer):
 
 ```bash
-# test if `nix-command` is enabled
-# if not, you will get an error like "experimental Nix feature 'nix-command' is disabled"
+# Test nix-command
 nix config show
 
-# test if `flakes` are enabled
-# if not, you will get an error like: "experimental feature 'flakes' is disabled"
+# Test flakes  
 nix flake metadata --extra-experimental-features nix-command
 ```
 
-Enable these features if not already enabled:
+If not enabled, add them manually:
 
 ```bash
 mkdir -p ~/.config/nix
 (set -C; echo "experimental-features = nix-command flakes" > ~/.config/nix/nix.conf)
 ```
 
-#### 2. Boostrap System Setup Using [Home Manager](https://github.com/nix-community/home-manager)
+#### 2. Bootstrap System with Home Manager
 
-Clone this dotfiles repository which includes the home-manager config:
+Clone the dotfiles repository:
 
 ```bash
 # I use my home directory (`~`) as the parent dir for the repo
 nix-shell -p git --run "git -C $parent_dir clone https://github.com/orthonormalremy/dotfiles.git"
 ```
 
-Install and activate home-manager using the flakes approach ([link](https://nix-community.github.io/home-manager/index.xhtml#sec-flakes-standalone)):
+Install and activate [Home Manager](https://github.com/nix-community/home-manager) using the [flakes approach](https://nix-community.github.io/home-manager/index.xhtml#sec-flakes-standalone):
 
 ```bash
 nix run home-manager/master -- init --switch $parent_dir/dotfiles/.config/home-manager
