@@ -72,14 +72,14 @@ mkdir -p ~/.config/nix
 Clone the dotfiles repository:
 
 ```bash
-# I use my home directory (`~`) as the parent dir for the repo
+# I use my home directory (~) as the parent dir for the repo
 nix-shell -p git --run "git -C $parent_dir clone https://github.com/orthonormalremy/dotfiles.git"
 ```
 
 Install and activate [Home Manager](https://github.com/nix-community/home-manager) using the [flakes approach](https://nix-community.github.io/home-manager/index.xhtml#sec-flakes-standalone):
 
 ```bash
-# requires `--impure` because the flake.nix uses envionment variables such as $USER
+# requires --impure because the flake.nix uses envionment variables
 nix run home-manager/master -- switch --impure --flake $parent_dir/dotfiles/.config/home-manager
 ```
 
