@@ -56,7 +56,7 @@ Test if features are already enabled (should be automatic with Determinate Nix i
 # Test nix-command
 nix config show
 
-# Test flakes  
+# Test flakes
 nix flake metadata --extra-experimental-features nix-command
 ```
 
