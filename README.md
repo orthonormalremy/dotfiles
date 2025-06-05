@@ -88,7 +88,7 @@ Install and activate [Home Manager](https://github.com/nix-community/home-manage
 
 ```bash
 # requires --impure because the flake uses envionment variables
-nix run home-manager/master -- switch --impure --flake $parent_dir/dotfiles/.config/home-manager
+nix run home-manager/master -- switch --impure
 ```
 
 <details>
@@ -97,7 +97,7 @@ nix run home-manager/master -- switch --impure --flake $parent_dir/dotfiles/.con
 ```bash
 nix-shell -p git --run "git -C ~ clone https://github.com/orthonormalremy/dotfiles.git"
 ln -s ~/dotfiles/.config/home-manager ~/.config/home-manager
-nix run home-manager/master -- switch --impure --flake ~/dotfiles/.config/home-manager
+nix run home-manager/master -- switch --impure
 ```
 
 </details>
