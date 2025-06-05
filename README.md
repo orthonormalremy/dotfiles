@@ -76,6 +76,14 @@ Clone the dotfiles repository:
 nix-shell -p git --run "git -C $parent_dir clone https://github.com/orthonormalremy/dotfiles.git"
 ```
 
+Create a symlink to the default ... other wise you'll always have to specificy the --flake path for home manager commands
+
+```bash
+ln -s $parent_dir/dotfiles/.config/home-manager ~/.config/home-manager
+```
+
+> **Note**: This is the only symlink we have to create outside of home manager because ...
+
 Install and activate [Home Manager](https://github.com/nix-community/home-manager) using the [flakes approach](https://nix-community.github.io/home-manager/index.xhtml#sec-flakes-standalone):
 
 ```bash
@@ -88,6 +96,7 @@ nix run home-manager/master -- switch --impure --flake $parent_dir/dotfiles/.con
 
 ```bash
 nix-shell -p git --run "git -C ~ clone https://github.com/orthonormalremy/dotfiles.git"
+ln -s ~/dotfiles/.config/home-manager ~/.config/home-manager
 nix run home-manager/master -- switch --impure --flake ~/dotfiles/.config/home-manager
 ```
 
