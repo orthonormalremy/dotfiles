@@ -53,10 +53,10 @@ nix --version
 Test if features are already enabled (should be automatic with Determinate Nix installer):
 
 ```bash
-# Test nix-command
+# test nix-command
 nix config show
 
-# Test flakes
+# test flakes
 nix flake metadata --extra-experimental-features nix-command
 ```
 
