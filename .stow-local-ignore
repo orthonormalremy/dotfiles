@@ -1,4 +1,5 @@
 /scripts
+/.config/nushell/history.txt
 
 # Stow's default ignore-list
 # https://cgit.git.savannah.gnu.org/cgit/stow.git/tree/default-ignore-list
