@@ -1,4 +1,4 @@
-\# config.nu
+# config.nu
 #
 # Installed by:
 # version = "0.104.1"
