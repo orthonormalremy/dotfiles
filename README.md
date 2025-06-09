@@ -79,7 +79,7 @@ nix-shell -p git --run "git -C $parent_dir clone https://github.com/orthonormalr
 Create a symlink to the default ... other wise you'll always have to specificy the --flake path for home manager commands:
 
 ```bash
-ln -s $parent_dir/dotfiles/.config/home-manager ~/.config/home-manager
+nix-shell -p stow --run "cd $parent_dir/dotfiles && stow -t ~ ."
 ```
 
 > **Note**: This is the only symlink we have to create outside of home manager because ...
@@ -96,7 +96,7 @@ nix run home-manager/master -- switch --impure
 
 ```bash
 nix-shell -p git --run "git -C ~ clone https://github.com/orthonormalremy/dotfiles.git"
-ln -s ~/dotfiles/.config/home-manager ~/.config/home-manager
+nix-shell -p stow --run "cd ~/dotfiles && stow -t ~ ."
 nix run home-manager/master -- switch --impure
 ```
 
