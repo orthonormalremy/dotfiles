@@ -8,12 +8,14 @@ export def dnf_install_1password [] {
 }
 
 export def add_primary_account [] {
-    print "Enter https://codeberg.org/orthonormalremy/secrets password\n"
+    print "Enter https://codeberg.org/orthonormalremy/secrets password: "
     let op_secret_key_encrypted = (
         ^curl -s -u orthonormalremy https://codeberg.org/orthonormalremy/secrets/raw/branch/main/OP_SECRET_KEY.enc
     ) | into string
-    print "Enter password to decrypt OP_SECRET_KEY: \n"
-    let op_secret_key = $op_secret_key_encrypted | aes_decrypt_salted
+    print ""
+    let password = input --suppress-output "Enter password to decrypt OP_SECRET_KEY: "
+    print ""
+    let op_secret_key = $op_secret_key_encrypted | aes_decrypt_salted $password
     (
         OP_SECRET_KEY=$op_secret_key
             op account add
