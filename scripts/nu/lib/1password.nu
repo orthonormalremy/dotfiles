@@ -1,3 +1,5 @@
+use crypto_utils.nu aes_decrypt_salted
+
 export def dnf_install_1password [] {
     # https://developer.1password.com/docs/cli/get-started/
     sudo rpm --import https://downloads.1password.com/linux/keys/1password.asc
@@ -6,10 +8,12 @@ export def dnf_install_1password [] {
 }
 
 export def add_primary_account [] {
-    let encrypted_op_secret_key = "U2FsdGVkX18srrnKii9DKH/AdSuOikIVKNyzwjTv+yQh8MVxV6MiTi9Y/r3pH6lgB/tj+7exIxcMbCxM6VqTzg=="
-    let decrypt_password = input --suppress-output "Enter password to decrypt OP_SECRET_KEY: "
-    # unable to get `$encrypted_op_secret_key | ^openssl ...` to work in nu so using bash -c
-    let op_secret_key = bash -c $'echo "($encrypted_op_secret_key)" | openssl enc -aes-256-cbc -d -a -pbkdf2 -pass pass:($decrypt_password)'
+    print "Enter https://codeberg.org/orthonormalremy/secrets password\n"
+    let op_secret_key_encrypted = (
+        ^curl -s -u orthonormalremy https://codeberg.org/orthonormalremy/secrets/raw/branch/main/OP_SECRET_KEY.enc
+    ) | into string
+    print "Enter password to decrypt OP_SECRET_KEY: \n"
+    let op_secret_key = $op_secret_key_encrypted | aes_decrypt_salted
     (
         OP_SECRET_KEY=$op_secret_key
             op account add
