@@ -15,6 +15,9 @@
   # release notes.
   home.stateVersion = "25.05"; # Please read the comment before changing.
 
+ # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
   home.packages = with pkgs; [
     _1password-cli
     nushell
