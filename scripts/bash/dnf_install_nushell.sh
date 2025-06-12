@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -e
 
 # https://www.nushell.sh/book/installation.html#package-managers
