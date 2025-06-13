@@ -112,7 +112,7 @@ nix run home-manager/master -- switch --impure
     export DOTFILES_PARENT_DIR=~
     nix run nixpkgs#git -- -C $DOTFILES_PARENT_DIR clone https://github.com/orthonormalremy/dotfiles.git
     [[ ! -e ~/.config/home-manager/home.init.nix ]] && nix run home-manager/master -- init --no-flake && mv ~/.config/home-manager/home.nix ~/.config/home-manager/home.init.nix
-    nix shell nixpkgs#stow --command bash -c "cd ~/$DOTFILES_PARENT_DIR && stow -R -t ~ ."
+    nix shell nixpkgs#stow --command bash -c "cd $DOTFILES_PARENT_DIR && stow -R -t ~ ."
     nix run home-manager/master -- switch --impure
 )
 ```
