@@ -23,10 +23,12 @@
       homeConfigurations."${username}" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
-        # Specify your home configuration modules here, for example,
-        # the path to your home.nix.
         modules = [
+          # auto-generated home.nix from `home-manager init --no-flake`
+          #  - provides `home.stateVersion`
+          #  - should error on conflicting definitions with dotfiles repo home.nix
           "${homeDirectory}/.config/home-manager/home.init.nix"
+          # dotfiles repo home.nix
           ./home.nix
         ];
 
