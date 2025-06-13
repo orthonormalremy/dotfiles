@@ -95,8 +95,9 @@ nix run home-manager/master -- switch --impure
 <summary>Remy, for your copy-paste convenience:</summary>
 
 ```bash
-nix-shell -p git --run "git -C ~ clone https://github.com/orthonormalremy/dotfiles.git"
-nix-shell -p stow --run "cd ~/dotfiles && stow -t ~ ."
+nix run nixpkgs#git -- -C ~ clone https://github.com/orthonormalremy/dotfiles.git
+[[ ! -e ~/.config/home-manager/home.init.nix ]] && nix run home-manager/master -- init --no-flake && mv ~/.config/home-manager/home.nix ~/.config/home-manager/home.init.nix
+nix shell nixpkgs#stow --command bash -c "cd ~/dotfiles && stow -R -t ~ ."
 nix run home-manager/master -- switch --impure
 ```
 
@@ -107,3 +108,13 @@ Going forward ...:
 ```bash
 home-manager switch --impure
 ```
+
+~/dotfiles/.config/home-manager/home.init.nix
+
+nix run home-manager/master init --no-flake
+
+nix run home-manager/master -- init --no-flake
+
+ls -la ~/.config/home-manager/
+
+nu -c --no-config-file --no-history "mv --no-clobber ~/.config/home-manager/home.nix ~/dotfiles/.config/home-manager/home.init.nix"
