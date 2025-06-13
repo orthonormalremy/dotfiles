@@ -48,7 +48,7 @@ exit # exit and open a new shell to refresh your environment
 nix --version
 ```
 
-**1.3 Enable Experimental Features**
+**1.3 Enable `nix-command` and `flakes`**
 
 Test if features are already enabled (should be automatic with Determinate Nix installer):
 
@@ -69,36 +69,52 @@ mkdir -p ~/.config/nix
 
 #### 2. Bootstrap System with Home Manager
 
-Clone the dotfiles repository:
+Set `DOTFILES_PARENT_DIR`:
 
 ```bash
 # I use my home directory (~) as the parent dir for the repo
-nix-shell -p git --run "git -C $parent_dir clone https://github.com/orthonormalremy/dotfiles.git"
+export DOTFILES_PARENT_DIR=/path/to/dotfiles-parent-dir
 ```
 
-Create a symlink to the default ... other wise you'll always have to specificy the --flake path for home manager commands:
+Clone the dotfiles repository:
 
 ```bash
-nix-shell -p stow --run "cd $parent_dir/dotfiles && stow -t ~ ."
+nix run nixpkgs#git -- -C $DOTFILES_PARENT_DIR clone https://github.com/orthonormalremy/dotfiles.git
 ```
 
-> **Note**: This is the only symlink we have to create outside of home manager because ...
+Use [Home Manager](https://github.com/nix-community/home-manager) to initialize `home.init.nix` (provides `home.stateVersion`):
 
-Install and activate [Home Manager](https://github.com/nix-community/home-manager) using the [flakes approach](https://nix-community.github.io/home-manager/index.xhtml#sec-flakes-standalone):
+```bash
+[[ ! -e ~/.config/home-manager/home.init.nix ]] && nix run home-manager/master -- init --no-flake && mv ~/.config/home-manager/home.nix ~/.config/home-manager/home.init.nix
+```
+
+Create [stow](https://www.gnu.org/software/stow/) managed symlinks:
+
+```bash
+nix shell nixpkgs#stow --command bash -c "cd ~/$DOTFILES_PARENT_DIR && stow -R -t ~ ."
+```
+
+Bootstrap system with Home Manager using the [flakes approach](https://nix-community.github.io/home-manager/index.xhtml#sec-flakes-standalone):
 
 ```bash
 # requires --impure because the flake uses envionment variables
 nix run home-manager/master -- switch --impure
 ```
 
+> Going forward this is sufficent: `home-manager switch --impure`
+
 <details>
 <summary>Remy, for your copy-paste convenience:</summary>
 
 ```bash
-nix run nixpkgs#git -- -C ~ clone https://github.com/orthonormalremy/dotfiles.git
-[[ ! -e ~/.config/home-manager/home.init.nix ]] && nix run home-manager/master -- init --no-flake && mv ~/.config/home-manager/home.nix ~/.config/home-manager/home.init.nix
-nix shell nixpkgs#stow --command bash -c "cd ~/dotfiles && stow -R -t ~ ."
-nix run home-manager/master -- switch --impure
+(
+    set -euo pipefail
+    export DOTFILES_PARENT_DIR=~
+    nix run nixpkgs#git -- -C $DOTFILES_PARENT_DIR clone https://github.com/orthonormalremy/dotfiles.git
+    [[ ! -e ~/.config/home-manager/home.init.nix ]] && nix run home-manager/master -- init --no-flake && mv ~/.config/home-manager/home.nix ~/.config/home-manager/home.init.nix
+    nix shell nixpkgs#stow --command bash -c "cd ~/$DOTFILES_PARENT_DIR && stow -R -t ~ ."
+    nix run home-manager/master -- switch --impure
+)
 ```
 
 </details>
