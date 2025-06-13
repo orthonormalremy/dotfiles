@@ -26,7 +26,7 @@
         # Specify your home configuration modules here, for example,
         # the path to your home.nix.
         modules = [
-          "${homeDirectory}/home.init.nix"
+          "${homeDirectory}/.config/home-manager/home.init.nix"
           ./home.nix
         ];
 
