@@ -17,6 +17,7 @@
       system = builtins.currentSystem;
       pkgs = nixpkgs.legacyPackages.${system};
       username = builtins.getEnv "USER";
+      homeDirectory = builtins.getEnv "HOME";
     in
     {
       homeConfigurations."${username}" = home-manager.lib.homeManagerConfiguration {
@@ -25,7 +26,7 @@
         # Specify your home configuration modules here, for example,
         # the path to your home.nix.
         modules = [
-          ./home.init.nix
+          "${homeDirectory}/home.init.nix"
           ./home.nix
         ];
 
