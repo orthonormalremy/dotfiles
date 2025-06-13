@@ -101,7 +101,10 @@ Bootstrap system with Home Manager using the [flakes approach](https://nix-commu
 nix run home-manager/master -- switch --impure
 ```
 
-> Going forward this is sufficent: `home-manager switch --impure`
+> home-manager is now installed so going forward, this command will be sufficient to apply updates:
+> ```bash
+> home-manager switch --impure
+> ```
 
 <details>
 <summary>Remy, for your copy-paste convenience:</summary>
@@ -118,9 +121,3 @@ nix run home-manager/master -- switch --impure
 ```
 
 </details>
-
-Going forward ...:
-
-```bash
-home-manager switch --impure
-```
