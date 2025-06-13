@@ -14,6 +14,7 @@
   home.packages = with pkgs; [
     _1password-cli
     nushell
+    stow
   ];
 
   home.file = {
