@@ -108,13 +108,3 @@ Going forward ...:
 ```bash
 home-manager switch --impure
 ```
-
-~/dotfiles/.config/home-manager/home.init.nix
-
-nix run home-manager/master init --no-flake
-
-nix run home-manager/master -- init --no-flake
-
-ls -la ~/.config/home-manager/
-
-nu -c --no-config-file --no-history "mv --no-clobber ~/.config/home-manager/home.nix ~/dotfiles/.config/home-manager/home.init.nix"
