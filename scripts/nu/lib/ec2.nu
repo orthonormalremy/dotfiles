@@ -15,19 +15,19 @@ export def ensure_key_pair_id_rsa [] {
 
 export def ensure_primary_firewall [] {
     (
-        aws ec2 describe-security-groups
+        ^aws ec2 describe-security-groups
             --filters "Name=group-name,Values=primary-firewall"
             --query "SecurityGroups[0].GroupId"
             --output text
     ) | if ($in | str trim | is-empty) {
         let default_vpc_id = (
-            aws ec2 describe-vpcs
+            ^aws ec2 describe-vpcs
                 --filters "Name=isDefault,Values=true"
                 --query "Vpcs[0].VpcId"
                 --output text
         )
         (
-            aws ec2 create-security-group
+            ^aws ec2 create-security-group
                 --group-name "primary-firewall"
                 --description $'primary-firewall created (date now | format date "%+")'
                 --vpc-id $default_vpc_id
