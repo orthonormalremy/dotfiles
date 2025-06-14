@@ -69,7 +69,7 @@ mkdir -p ~/.config/nix
 
 #### 2. Bootstrap System with Home Manager
 
-Clone this dotfiles repository (I use my home directory `~` as the parent dir):
+Clone this dotfiles repo (I use my home directory `~` as the parent dir):
 
 ```bash
 nix run nixpkgs#git -- -C /path/to/parent-dir clone https://github.com/orthonormalremy/dotfiles.git
