@@ -94,15 +94,15 @@ Create [stow](https://www.gnu.org/software/stow/) managed symlinks:
 nix shell nixpkgs#stow --command bash -c "cd ~/$DRPDP && stow -R -t ~ ."
 ```
 
+```bash
+unset DRPDP # not needed anymore
+```
+
 Bootstrap system with Home Manager using the [flakes approach](https://nix-community.github.io/home-manager/index.xhtml#sec-flakes-standalone):
 
 ```bash
 # requires --impure because the flake uses envionment variables
 nix run home-manager/master -- switch --impure
-```
-
-```bash
-unset DRPDP # not needed beyond the initial setup
 ```
 
 <details>
