@@ -69,10 +69,10 @@ mkdir -p ~/.config/nix
 
 #### 2. Bootstrap System with Home Manager
 
-Clone this dotfiles repository:
+Clone this dotfiles repository (I use my home directory `~` as the parent dir):
 
 ```bash
-nix run nixpkgs#git -- -C /path/to/dotfiles-repo-parent-dir clone https://github.com/orthonormalremy/dotfiles.git
+nix run nixpkgs#git -- -C /path/to/parent-dir clone https://github.com/orthonormalremy/dotfiles.git
 ```
 
 Use [Home Manager](https://github.com/nix-community/home-manager) to initialize `home.init.nix` (provides `home.stateVersion`):
@@ -84,7 +84,7 @@ Use [Home Manager](https://github.com/nix-community/home-manager) to initialize 
 Create [stow](https://www.gnu.org/software/stow/) managed symlinks:
 
 ```bash
-nix shell nixpkgs#stow --command bash -c "cd /path/to/dotfiles-repo-parent-dir && stow -R -t ~ ."
+nix shell nixpkgs#stow --command bash -c "cd /path/to/parent-dir && stow -R -t ~ ."
 ```
 
 Bootstrap system with Home Manager using the [flakes approach](https://nix-community.github.io/home-manager/index.xhtml#sec-flakes-standalone):
@@ -100,7 +100,7 @@ nix run home-manager/master -- switch --impure
 ```bash
 (
     set -euo pipefail
-    export DRPDP=~ # dotfiles repo parent directory path
+    export DRPDP=~ # dotfiles repo parent dir path
     nix run nixpkgs#git -- -C $DRPDP clone https://github.com/orthonormalremy/dotfiles.git
     [[ ! -e ~/.config/home-manager/home.init.nix ]] && nix run home-manager/master -- init --no-flake && mv ~/.config/home-manager/home.nix ~/.config/home-manager/home.init.nix
     nix shell nixpkgs#stow --command bash -c "cd $DRPDP && stow -R -t ~ ."
