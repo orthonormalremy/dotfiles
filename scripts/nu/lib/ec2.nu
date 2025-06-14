@@ -17,7 +17,6 @@ export def ensure_primary_firewall [] {
     (
         ^aws ec2 describe-security-groups
             --filters "Name=group-name,Values=primary-firewall"
-            --query "SecurityGroups[0].GroupId"
             --output text
     ) | if ($in | str trim | is-empty) {
         let default_vpc_id = (
