@@ -6,7 +6,7 @@ const current_file = path self
 let repo_root = git -C ($current_file | path dirname) rev-parse --show-toplevel
 
 def main [] {
-    ^op account list | grep "orthonormalremy@gmail.com" | if ($in | is-empty) {
+    op account list | grep "orthonormalremy@gmail.com" | if ($in | is-empty) {
         add_primary_account
     }
     if not ("~/.ssh/id_rsa" | path exists) {
