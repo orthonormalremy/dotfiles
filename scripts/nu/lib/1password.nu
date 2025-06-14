@@ -12,7 +12,6 @@ export def add_primary_account [] {
     let op_secret_key_encrypted = (
         ^curl -s -u orthonormalremy https://codeberg.org/orthonormalremy/secrets/raw/branch/main/OP_SECRET_KEY.enc
     ) | into string
-    print ""
     let password = input --suppress-output "Enter password to decrypt OP_SECRET_KEY: "
     print ""
     let op_secret_key = $op_secret_key_encrypted | aes_decrypt_salted $password
