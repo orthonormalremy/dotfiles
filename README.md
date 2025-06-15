@@ -100,10 +100,9 @@ nix run home-manager/master -- switch --impure
 ```bash
 (
     set -euo pipefail
-    export DRPDP=~ # dotfiles repo parent dir path
-    nix run nixpkgs#git -- -C $DRPDP clone https://github.com/orthonormalremy/dotfiles.git
+    nix run nixpkgs#git -- -C ~ clone https://github.com/orthonormalremy/dotfiles.git
     [[ ! -e ~/.config/home-manager/home.init.nix ]] && nix run home-manager/master -- init --no-flake && mv ~/.config/home-manager/home.nix ~/.config/home-manager/home.init.nix
-    nix shell nixpkgs#stow --command bash -c "cd $DRPDP/dotfiles && stow -R -t ~ ."
+    nix shell nixpkgs#stow --command bash -c "cd ~/dotfiles && stow -R -t ~ ."
     nix run home-manager/master -- switch --impure
 )
 ```
