@@ -1,0 +1,15 @@
+nu ~/dotfiles/scripts/nu/ensure_secrets.nu
+clear
+bat ~/dotfiles/scripts/nu/ensure_secrets.nu
+cat ~/dotfiles/scripts/nu/ensure_secrets.nu
+bash -c ([<\n>            'eval $(op signin) >/dev/null'<\n>            'python -c "import json; import os; print(json.dumps(dict(os.environ)))"' # use python to get env as json<\n>        ] | str join " && ")
+hx ~/dotfiles/.config/home-manager/home.nix
+home-manager switch --impure
+hx ~/dotfiles/.config/home-manager/home.nix
+home-manager switch --impure
+python --version
+which python 
+bat ~/dotfiles/scripts/nu/ensure_secrets.nu
+nu ~/dotfiles/scripts/nu/ensure_secrets.nu
+clear
+cd ~/dotfiles/

@@ -22,6 +22,7 @@
     just
     mprocs
     nushell
+    python3
     ripgrep
     sshs
     stow
