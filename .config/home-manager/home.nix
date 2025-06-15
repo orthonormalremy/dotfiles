@@ -16,6 +16,7 @@
     helix
     just
     nushell
+    sshs
     stow
   ];
 
