@@ -14,6 +14,7 @@
   home.packages = with pkgs; [
     _1password-cli
     bat
+    gitui
     helix
     just
     nushell
