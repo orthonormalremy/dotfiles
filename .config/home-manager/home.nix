@@ -20,6 +20,7 @@
     gitui
     helix
     just
+    mprocs
     nushell
     ripgrep
     sshs
