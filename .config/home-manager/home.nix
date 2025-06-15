@@ -13,6 +13,7 @@
 
   home.packages = with pkgs; [
     _1password-cli
+    bat
     helix
     just
     nushell
