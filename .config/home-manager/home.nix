@@ -23,6 +23,7 @@
     ripgrep
     sshs
     stow
+    yazi
   ];
 
   home.file = {
